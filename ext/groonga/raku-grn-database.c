@@ -30,3 +30,7 @@ bool init_groonga(void) {
   return true;
 }
 
+void fin_groonga(void) {
+  grn_fin();
+}
+
