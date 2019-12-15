@@ -20,6 +20,8 @@
 #ifndef __RAKU_GRN_H__
 #define __RAKU_GRN_H__
 
-#include <groonga.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "groonga.h"
 
 #endif /* __RAKU_GRN_H__ */
