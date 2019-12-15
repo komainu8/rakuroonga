@@ -24,9 +24,10 @@ bool init_groonga(void) {
 
   rc = grn_init();
   if (rc != GRN_SUCCESS) {
-    /* TODO: Convert grn_rc to int*/
+    printf("grn_init failed: rc=%d", rc);
     return false;
   }
+  printf("grn_init success");
   return true;
 }
 
