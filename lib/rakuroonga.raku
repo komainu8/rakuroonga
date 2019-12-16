@@ -20,7 +20,7 @@
 use NativeCall;
 
 constant LIB_PATH="ext/groonga/grn";
-sub init_rakuroonga() is native(LIB_PATH) is symbol('init_groonga') { * }
+sub init_rakuroonga() returns bool is native(LIB_PATH) is symbol('init_groonga') { * }
 sub fin_rakuroonga() is native(LIB_PATH) is symbol('fin_groonga') { * }
 
 say init_rakuroonga();
