@@ -23,5 +23,6 @@ grn_ctx open_context(void) {
   return grn_ctx_open(0);
 }
 
-  return ctx;
+grn_rc close_context(grn_ctx context) {
+  return grn_ctx_close(context);
 }

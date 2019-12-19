@@ -20,6 +20,27 @@
 use NativeCall;
 constant LIB_PATH="../ext/groonga/libgrn";
 
+class Context {
+  has enum GrnRc $.rc;
+  has int32 $.flags;
+  has GrnEncoding $.encoding;
+  has uint8 $.ntrace;
+  has uint8 $.errlvl;
+  has uint8 $.stat;
+  has uint32 $.seqno;
+  has uint32 $.subno;
+  has uint32 $.seqno2;
+  has uint32 $.errline;
+  has GrnUserData $.user_data;
+  has Context $.prev;
+  has Context $.next;
+  has Str $.errfile;
+  has Str $.errfunc;
+  has ContextImpl $.impl;
+  has  @trace[16];
+  has Str $.errbuf[GRN_CTX_MSGSIZE];
+}
+
 my class grn_ctx is repr('CStruct') {
   has grn_rc $.rc;
   has int32 $.flags;

@@ -21,6 +21,8 @@ use NativeCall;
 constant LIB_PATH="../ext/groonga/libgrn";
 
 class DataBase {
-  method create() returns bool {}
+  method create() returns bool {
+    
+  }
   method drop() returns bool {}
 }
