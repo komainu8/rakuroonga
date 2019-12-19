@@ -19,9 +19,9 @@
 
 #include "raku-grn.h"
 
-grn_ctx init_context(void) {
-  grn_ctx ctx;
-  grn_ctx_init(&ctx, 0);
+grn_ctx open_context(void) {
+  return grn_ctx_open(0);
+}
 
   return ctx;
 }
