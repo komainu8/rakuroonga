@@ -19,7 +19,7 @@ We can use Groonga's fast and highly functional features from Raku.
 AUTHOR
 ======
 
-Horimoto Yasuhiro <horimoto@clear-code.com>
+Horimoto Yasuhiro
 
 LICENSE
 =======
