@@ -85,3 +85,26 @@ enum grn_rc {
   GRN_ZSTD_ERROR => -79;
 };
 
+constant GRN_CTX_MSGSIZE = 0x80;
+
+class grn_ctx is repr('CStruct') {
+  has grn_rc $.rc is rw;
+  has int32 $.flags is rw;
+  has grn_encoding $.encoding is rw;
+  has uint8 $.ntrace is rw;
+  has uint8 $.errlvl is rw;
+  has uint8 $.stat is rw;
+  has uint32 $.seqno is rw;
+  has uint32 $.subno is rw;
+  has uint32 $.seqno2 is rw;
+  has uint32 $.errline is rw;
+  has grn_user_data $.user_data is rw;
+  has Pointer[grn_ctx] $.prev is rw;
+  has Pointer[grn_ctx] $.next is rw;
+  has Pointer[int8] $.errfile is readonly;
+  has Pointer[int8] $.errfunc is readonly;
+  has Pointer[grn_ctx_impl] $.impl is rw;
+  has CArray[Pointer[void]].allocate(16) $.trace;
+  has CArray[int8].allocate(GRN_CTX_MSGSIZE) $.errbuf;
+};
+
