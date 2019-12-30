@@ -1,0 +1,19 @@
+{
+  "authors" : [
+    "Horimoto Yasuhiro"
+  ],
+  "build-depends" : [ ],
+  "depends" : [ ],
+  "description" : "Raku bindings of Groonga",
+  "license" : "GNU General Public License v3.0",
+  "name" : "rakuroonga",
+  "perl" : "6.c",
+  "provides" : {
+    "rakuroonga" : "lib/rakuroonga.pm6"
+  },
+  "resources" : [ ],
+  "source-url" : "",
+  "tags" : [ ],
+  "test-depends" : [ ],
+  "version" : "0.0.1"
+}
