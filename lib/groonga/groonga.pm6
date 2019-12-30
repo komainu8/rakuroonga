@@ -108,3 +108,5 @@ class grn_ctx is repr('CStruct') {
   has CArray[int8].allocate(GRN_CTX_MSGSIZE) $.errbuf;
 };
 
+
+sub grn_init() returns grn_rc is native(libgroonga) is export { * }
