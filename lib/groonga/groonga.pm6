@@ -116,3 +116,7 @@ sub grn_ctx_open(int32)
     is native(libgroonga)
     is export
     { * }
+sub grn_ctx_close(Pointer[grn_ctx])
+    returns grn_rc
+    is native(libgroonga)
+    is export { * }
