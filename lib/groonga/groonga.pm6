@@ -110,3 +110,4 @@ class grn_ctx is repr('CStruct') {
 
 
 sub grn_init() returns grn_rc is native(libgroonga) is export { * }
+sub grn_fin()  returns grn_rc is native(libgroonga) is export { * }
