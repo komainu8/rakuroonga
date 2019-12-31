@@ -85,6 +85,16 @@ enum grn_rc (
   GRN_ZSTD_ERROR => -79
 );
 
+enum grn_encoding (
+  GRN_ENC_DEFAULT => 0,
+  'GRN_ENC_NONE',
+  'GRN_ENC_EUC_JP',
+  'GRN_ENC_UTF8',
+  'GRN_ENC_SJIS',
+  'GRN_ENC_LATIN1',
+  'GRN_ENC_KOI8R'
+);
+
 
 constant GRN_CTX_MSGSIZE = 0x80;
 
