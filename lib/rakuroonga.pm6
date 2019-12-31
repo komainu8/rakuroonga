@@ -1,5 +1,5 @@
 use v6.c;
-use Groonga::Raw
+use groonga::groonga;
 
 
 unit class rakuroonga:ver<0.0.1>;
