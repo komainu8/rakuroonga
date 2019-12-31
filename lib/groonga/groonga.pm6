@@ -95,6 +95,11 @@ enum grn_encoding (
   'GRN_ENC_KOI8R'
 );
 
+class grn_user_data is repr('CUnion') {
+  has int32 $.int_value is rw;
+  has uint32 $.id is rw;
+  has Pointer[void] $.ptr is rw;
+}
 
 constant GRN_CTX_MSGSIZE = 0x80;
 
