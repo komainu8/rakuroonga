@@ -4,7 +4,12 @@ use groonga::groonga;
 
 unit class rakuroonga:ver<0.0.1>;
 
-method new {
+method init {
+  my $rc = grn_init();
+  if $rc != GRN_SUCCESS.value {
+    say "Initialize of Groonga failed!: $rc";
+  }
+  return $rc;
 }
 
 method !init_groonga {
