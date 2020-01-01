@@ -12,7 +12,12 @@ method init {
   return $rc;
 }
 
-method !init_groonga {
+method fin {
+  my $rc = grn_fin();
+  if $rc != GRN_SUCCESS.value {
+    say "Finish of Groonga failed!: $rc";
+  }
+  return $rc;
 }
 
 =begin pod
