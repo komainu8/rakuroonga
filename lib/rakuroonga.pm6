@@ -4,11 +4,14 @@ use groonga::groonga;
 
 unit class rakuroonga:ver<0.0.1>;
 
+has $.context;
+
 method init {
   my $rc = grn_init();
   if $rc != GRN_SUCCESS.value {
     say "Initialize of Groonga failed!: $rc";
   }
+  $!context = grn_ctx_open(0);
   return $rc;
 }
 
