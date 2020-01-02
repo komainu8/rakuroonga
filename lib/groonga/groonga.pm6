@@ -144,11 +144,12 @@ class grn_ctx is repr('CStruct') {
   has CArray[Pointer[void]].allocate(16) $.trace;
   has CArray[int8].allocate(GRN_CTX_MSGSIZE) $.errbuf;
 };
+class grn_ctx is repr('CPointer') is export { * }
 
 sub grn_init(--> int8) is native(libgroonga) is export { * }
 sub grn_fin(--> int8)  is native(libgroonga) is export { * }
 
-    returns Pointer[grn_ctx]
+sub grn_ctx_open(int32 --> grn_ctx)
     is native(libgroonga)
     is export
     { * }
