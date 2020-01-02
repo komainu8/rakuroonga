@@ -16,10 +16,16 @@ method init {
 }
 
 method fin {
-  my $rc = grn_fin();
+  my $rc = grn_ctx_close($!context);
+  if $rc != GRN_SUCCESS.value {
+    say "Colse context failed!: $rc";
+  }
+
+  $rc = grn_fin();
   if $rc != GRN_SUCCESS.value {
     say "Finish of Groonga failed!: $rc";
   }
+
   return $rc;
 }
 
