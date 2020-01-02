@@ -145,6 +145,7 @@ class grn_ctx is repr('CStruct') {
   has CArray[int8].allocate(GRN_CTX_MSGSIZE) $.errbuf;
 };
 class grn_ctx is repr('CPointer') is export { * }
+class grn_obj is repr('CPointer') is export { * }
 
 sub grn_init(--> int8) is native(libgroonga) is export { * }
 sub grn_fin(--> int8)  is native(libgroonga) is export { * }
@@ -153,13 +154,10 @@ sub grn_ctx_open(int32 --> grn_ctx)
     is native(libgroonga)
     is export
     { * }
-sub grn_ctx_close(Pointer[grn_ctx])
-    returns grn_rc
 sub grn_ctx_close(grn_ctx --> int8)
     is native(libgroonga)
     is export { * }
 
+sub grn_ctx_db(grn_ctx --> grn_obj)
     is native(libgroonga)
     is export { * }
-sub grn_init() returns int8 is native(libgroonga) is export { * }
-sub grn_fin()  returns int8 is native(libgroonga) is export { * }
