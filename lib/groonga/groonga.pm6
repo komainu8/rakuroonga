@@ -162,5 +162,9 @@ sub grn_ctx_db(grn_ctx)
     is native(libgroonga)
     is export { * }
 
+sub grn_obj_unlink(grn_ctx, grn_obj)
+    is native(libgroonga)
+    is export { * }
+
     is native(libgroonga)
     is export { * }
