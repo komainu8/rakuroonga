@@ -158,6 +158,9 @@ sub grn_ctx_close(grn_ctx --> int8)
     is native(libgroonga)
     is export { * }
 
-sub grn_ctx_db(grn_ctx --> grn_obj)
+sub grn_ctx_db(grn_ctx)
+    is native(libgroonga)
+    is export { * }
+
     is native(libgroonga)
     is export { * }
