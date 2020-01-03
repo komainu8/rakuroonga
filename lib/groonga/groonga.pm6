@@ -166,5 +166,8 @@ sub grn_obj_unlink(grn_ctx, grn_obj)
     is native(libgroonga)
     is export { * }
 
+sub grn_db_create(grn_ctx, Str, grn_db_create_optarg)
+    is native(libgroonga)
+    is export { * }
     is native(libgroonga)
     is export { * }

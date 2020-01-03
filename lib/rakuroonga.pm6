@@ -29,6 +29,22 @@ method fin {
   return $rc;
 }
 
+multi method create_database {
+  my $old_database = grn_ctx_db($!context);
+  if $old_database.Bool {
+    grn_obj_unlink($!context, $old_database);
+  }
+  $!database = grn_db_create($!context, Nil, Nil);
+}
+
+multi method create_database($path) {
+  my $old_database = grn_ctx_db($!context);
+  if $old_database.Bool {
+    grn_obj_unlink($!context, $old_database);
+  }
+  $!database = grn_db_create($!context, $path, Nil);
+}
+
 =begin pod
 
 =head1 NAME
