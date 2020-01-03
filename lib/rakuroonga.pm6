@@ -45,6 +45,14 @@ multi method create_database($path) {
   $!database = grn_db_create($!context, $path, Nil);
 }
 
+method open_database($path) {
+  $!database = grn_db_open($!context, $path);
+}
+
+method create_table($table_name, $path, $flags, $key_type, $value_type) {
+  $!table = grn_table_create($!context, $table_name, $table_name.encode.byte, );
+}
+
 =begin pod
 
 =head1 NAME
