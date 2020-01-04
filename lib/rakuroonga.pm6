@@ -5,6 +5,13 @@ use groonga::groonga;
 unit class rakuroonga:ver<0.0.1>;
 
 has $.context;
+method new {
+  rakuroonga_init();
+  $!context = grn_ctx_open(0);
+
+  return self.bless();
+}
+
 
 method init {
   my $rc = grn_init();
