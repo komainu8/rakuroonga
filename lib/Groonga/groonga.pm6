@@ -22,7 +22,18 @@
 use NativeCall;
 constant libgroonga = "groonga";
 
-enum grn_rc (
+constant GRN_OBJ_PERSISTENT = :16("1000");
+
+constant GRN_OBJ_KEY_WITH_SIS = :16("40");
+constant GRN_OBJ_KEY_NORMALIZE = :16("80");
+
+constant GRN_OBJ_TABLE_HASH_KEY = 0;
+constant GRN_OBJ_TABLE_PAT_KEY  = 1;
+constant GRN_OBJ_TABLE_DAT_KEY  = 2;
+constant GRN_OBJ_TABLE_NO_KEY   = 3;
+
+
+enum GroongaReturnCodes (
   GRN_SUCCESS => 0,
   GRN_END_OF_DATA => 1,
   GRN_UNKNOWN_ERROR => -1,
@@ -106,46 +117,10 @@ enum grn_rc (
   GRN_ZSTD_ERROR => -79
 );
 
-enum grn_encoding (
-  GRN_ENC_DEFAULT => 0,
-  'GRN_ENC_NONE',
-  'GRN_ENC_EUC_JP',
-  'GRN_ENC_UTF8',
-  'GRN_ENC_SJIS',
-  'GRN_ENC_LATIN1',
-  'GRN_ENC_KOI8R'
-);
-
-class grn_user_data is repr('CUnion') {
-  has int32 $.int_value is rw;
-  has uint32 $.id is rw;
-  has Pointer[void] $.ptr is rw;
-}
-
-constant GRN_CTX_MSGSIZE = 0x80;
-
-class grn_ctx is repr('CStruct') {
-  has grn_rc $.rc is rw;
-  has int32 $.flags is rw;
-  has grn_encoding $.encoding is rw;
-  has uint8 $.ntrace is rw;
-  has uint8 $.errlvl is rw;
-  has uint8 $.stat is rw;
-  has uint32 $.seqno is rw;
-  has uint32 $.subno is rw;
-  has uint32 $.seqno2 is rw;
-  has uint32 $.errline is rw;
-  has grn_user_data $.user_data is rw;
-  has Pointer[grn_ctx] $.prev is rw;
-  has Pointer[grn_ctx] $.next is rw;
-  has Pointer[int8] $.errfile is readonly;
-  has Pointer[int8] $.errfunc is readonly;
-  has Pointer[grn_ctx_impl] $.impl is rw;
-  has CArray[Pointer[void]].allocate(16) $.trace;
-  has CArray[int8].allocate(GRN_CTX_MSGSIZE) $.errbuf;
-};
 class grn_ctx is repr('CPointer') is export { * }
 class grn_obj is repr('CPointer') is export { * }
+
+class grn_db_create_optarg is repr('CPointer') is export { * }
 
 sub grn_init(--> int8) is native(libgroonga) is export { * }
 sub grn_fin(--> int8)  is native(libgroonga) is export { * }
