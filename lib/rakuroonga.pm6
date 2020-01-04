@@ -13,6 +13,11 @@ method new {
 }
 
 
+submethod DESTROY {
+  grn_ctx_close($!context);
+  grn_fin();
+}
+
 method init {
   my $rc = grn_init();
   if $rc != GRN_SUCCESS.value {
