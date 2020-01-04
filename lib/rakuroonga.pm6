@@ -50,7 +50,10 @@ method open_database($path) {
 }
 
 method create_table($table_name, $path, $flags, $key_type, $value_type) {
-  $!table = grn_table_create($!context, $table_name, $table_name.encode.byte, );
+  my key_type = grn_ctx_at($!context, GRN_DB_SHORT_TEXT.value);
+  my value_type = grn_ctx_at($!context, GRN_DB_SHORT_TEXT.value);
+  $!table =
+    grn_table_create($!context, $table_name, $table_name.encode.byte, Nil, GRN_OBJ_TABLE_HASH_KEY, key_type, value_type);
 }
 
 =begin pod
