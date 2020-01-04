@@ -5,6 +5,8 @@ use groonga::groonga;
 unit class rakuroonga:ver<0.0.1>;
 
 has $.context;
+has $.database;
+
 method new {
   rakuroonga_init();
   $!context = grn_ctx_open(0);
