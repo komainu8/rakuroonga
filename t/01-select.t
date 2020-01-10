@@ -15,8 +15,8 @@ $table.add_column("title", "ShortText");
 $table.insert("2020/1/1", "Happy New Year!");
 $table.insert("2020/1/2", "I eat Osechi!!");
 
-my $results = $table.select("Blogs", "data == 2020/1/1");
-my %expected = data => "2020/1/1", title -> "Happy New Year!";
-is($results, %expected, "This test for select");
+is($table.select("Blogs", "data == 2020/1/1"),
+   { data => "2020/1/1", title => "Happy New Year!" },
+   "This test for select");
 
 done-testing;
