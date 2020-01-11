@@ -7,7 +7,7 @@ SYNOPSIS
 ========
 
 ```perl6
-use rakuroonga;
+use Rakuroonga;
 ```
 
 DESCRIPTION
