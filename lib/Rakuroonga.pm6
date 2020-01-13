@@ -9,6 +9,10 @@ class Rakuroonga {
     $!groonga = Groonga.new();
   }
 
+  method create_database(Str $path="") {
+    $!groonga.create_database($path);
+  }
+
   submethod DESTROY {
     $!groonga.fin();
   }
