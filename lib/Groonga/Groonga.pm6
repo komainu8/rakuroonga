@@ -21,7 +21,7 @@ class Groonga {
   }
 
   method fin {
-    raku_grn_ctx_close(self.context);
+    raku_grn_ctx_close($!context);
     raku_grn_fin();
   }
 }
