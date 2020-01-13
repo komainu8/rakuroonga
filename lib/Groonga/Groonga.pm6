@@ -1,7 +1,6 @@
 use v6.c;
 use NativeCall;
 
-constant librakuroonga = "resources/rakuroonga";
 
 class Groonga {
   class grn_ctx is repr('CPointer') { * };
