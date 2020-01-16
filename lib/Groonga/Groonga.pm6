@@ -22,8 +22,7 @@ class Groonga {
   }
 
   method create_database(Str $path) {
-    $!database = Database.new;
-    $!database.create_database($!context, $path);
+    $!database = Database.new($!context, $path);
   }
 
   method fin {
