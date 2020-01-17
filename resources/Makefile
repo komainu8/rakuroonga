@@ -4,6 +4,7 @@ LIBS	= -lgroonga
 PREFIX  = /usr/local
 TARGET	= librakuroonga.so
 SRCS	= raku-grn-context.c \
+	  raku-grn-database.c \
           raku-groonga.c
 
 all: $(TARGET)

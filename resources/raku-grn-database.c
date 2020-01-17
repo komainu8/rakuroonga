@@ -18,13 +18,18 @@
 */
 
 #include "raku-grn.h"
+#include <stdbool.h>
+#include <stdio.h>
 
 grn_obj *raku_grn_db_create(grn_ctx *ctx,
-                            conts char *path,
-                            grn_db_create_optarg *optarg) {
-  return grn_db_create(ctx, path, optarg);
+                            const char *path) {
+  grn_obj *database = grn_db_create(ctx, path, NULL);
+  if(database) {
+    return database;
+  }
+  return NULL;
 }
 
 grn_obj *raku_grn_db_open(grn_ctx *ctx, const char *path) {
-  return gnr_db_open(path);
+  return grn_db_open(ctx, path);
 }
