@@ -23,7 +23,12 @@
 
 grn_obj *raku_grn_db_create(grn_ctx *ctx,
                             const char *path) {
-  grn_obj *database = grn_db_create(ctx, path, NULL);
+  grn_obj *database;
+  if(path) {
+    database = grn_db_create(ctx, path, NULL);
+  } else {
+    database = grn_db_create(ctx, NULL, NULL);
+  }
   if(database) {
     return database;
   }
