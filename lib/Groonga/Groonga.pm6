@@ -21,9 +21,14 @@ class Groonga {
     $!context = raku_grn_ctx_open(0);
   }
 
-  method create_database(Str $path) {
+  multi method create_database(Str $path) {
     $!database = Database.new();
     $!database.create($!context, $path);
+  }
+
+  multi method create_database {
+    $!database = Database.new();
+    $!database.create($!context);
   }
 
   method fin {
