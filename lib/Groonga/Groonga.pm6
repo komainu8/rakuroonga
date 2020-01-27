@@ -36,5 +36,3 @@ class Groonga {
     raku_grn_fin();
   }
 }
-
-
