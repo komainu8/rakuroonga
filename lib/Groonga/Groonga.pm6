@@ -31,6 +31,11 @@ class Groonga {
     $!database.create($!context);
   }
 
+  method open_database(Str $path) {
+    $!database = Database.new();
+    $!database.open($!context, $path);
+  }
+
   method fin {
     raku_grn_ctx_close($!context);
     raku_grn_fin();
