@@ -5,9 +5,9 @@ use Rakuroonga;
 
 my $rakuroonga = Rakuroonga.new;
 
-is($rakuroonga.create_database("./t/db/db"),
+is($rakuroonga.open_database("./t/db/db"),
    True,
-   "This test for create database");
+   "This test for open database");
 my $table = $rakuroonga.create_table("Blogs", "Hash", "UInt64");
 $table.add_column("date", "Time");
 $table.add_column("title", "ShortText");
