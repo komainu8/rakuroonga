@@ -13,6 +13,10 @@ class Rakuroonga {
     $!groonga.create_database($path);
   }
 
+  method open_database(Str $path="") {
+    $!groonga.open_database($path);
+  }
+
   submethod DESTROY {
     $!groonga.fin();
   }
