@@ -38,7 +38,7 @@ grn_obj *raku_grn_db_create(grn_ctx *ctx,
 grn_obj *raku_grn_db_open(grn_ctx *ctx, const char *path) {
   grn_obj *database;
 
-  database = grn_db_open(ctx, path);
+  GRN_DB_OPEN_OR_CREATE(ctx, path, 0, database);
   if (database) {
     return database;
   }
