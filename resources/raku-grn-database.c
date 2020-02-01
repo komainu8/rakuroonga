@@ -35,12 +35,14 @@ grn_obj *raku_grn_db_create(grn_ctx *ctx,
   return NULL;
 }
 
-grn_obj *raku_grn_db_open(grn_ctx *ctx, const char *path) {
-  grn_obj *database;
+bool raku_grn_db_open(grn_ctx *ctx, const char *path, grn_obj *database) {
+  const bool OPEN = true;
+  const bool NOT_OPEN = false;
 
-  GRN_DB_OPEN_OR_CREATE(ctx, path, 0, database);
+  database = grn_db_open(ctx, path);
+
   if (database) {
-    return database;
+    return OPEN;
   }
-  return NULL;
+  return NOT_OPEN;
 }

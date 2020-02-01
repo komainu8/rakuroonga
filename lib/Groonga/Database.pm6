@@ -7,7 +7,7 @@ class Database {
   class grn_ctx is repr('CPointer') { * };
   class grn_obj is repr('CPointer') { * };
   sub raku_grn_db_create(grn_ctx, Str --> grn_obj) is native(librakuroonga) { * };
-  sub raku_grn_db_open(grn_ctx, Str --> grn_obj) is native(librakuroonga) { * };
+  sub raku_grn_db_open(grn_ctx, Str, grn_obj --> Bool) is native(librakuroonga) { * };
 
   has $!database;
   has $!path;
@@ -27,9 +27,11 @@ class Database {
     unless $path {
       return False;
     }
-    $!database = raku_grn_db_open($context, $path);
-    if $!database {
+
+    if raku_grn_db_open($context, $path, $!database) {
       return True;
+    } else {
+      return False;
     }
   }
 }
