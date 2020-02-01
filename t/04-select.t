@@ -8,9 +8,6 @@ my $rakuroonga = Rakuroonga.new;
 is($rakuroonga.open_database("./t/db/db"),
    True,
    "This test for open database");
-is($rakuroonga.open_database("./t/db/invalid"),
-   False,
-   "This test for open database by using invalid path");
 my $table = $rakuroonga.create_table("Blogs", "Hash", "UInt64");
 $table.add_column("date", "Time");
 $table.add_column("title", "ShortText");
