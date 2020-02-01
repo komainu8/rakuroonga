@@ -18,6 +18,7 @@
 */
 
 #include "raku-grn.h"
+#include <stdio.h>
 
 grn_ctx *raku_grn_ctx_open(int flags) {
   return grn_ctx_open(flags);

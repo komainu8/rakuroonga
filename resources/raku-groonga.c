@@ -18,6 +18,7 @@
 */
 
 #include "raku-grn.h"
+#include <stdio.h>
 
 bool raku_grn_init() {
   grn_rc rc;
