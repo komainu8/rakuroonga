@@ -20,12 +20,18 @@
 #include "raku-grn.h"
 
 grn_obj *raku_grn_table_create(grn_ctx *ctx,
-                               const char *name, unsigned int name_size,
-                               const char *path,
-                               grn_obj_flags flags,
-                               grn_obj *key_type,
-                               grn_obj *value_type) {
-  return grn_table_create(name, name_size, path, flags, key_type, value_type);
+                               const char *name,
+			       const char *flag,
+			       const char *key_type,
+			       const char *default_tokenizer,
+			       const char *normalizer,
+			       const char *token_filter) {
+  unsigned int name_size = strlen(name);
+  grn_obj_flags flags = GRN_OBJ_PERSISTENT;
+  flags |= convert_flag(flag);
+  grn_obj key_type = convert_key_type(key_type);
+
+  return grn_table_create(name, name_size, NULL, flags, key_type, GRN_ENC_DEFAULT);
 }
 
 grn_id raku_grn_table_add(grn_ctx *ctx,
