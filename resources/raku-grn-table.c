@@ -19,6 +19,16 @@
 
 #include "raku-grn.h"
 
+static grn_obj_flags convert_flag(const char *flag) {
+  if(strncmp("Hash", flag, strlen("Hash"))) {
+    return GRN_OBJ_TABLE_HASH_KEY;
+  } else if(strncmp("Pat", flag, strlen("Pat"))) {
+    return GRN_OBJ_TABLE_PAT_KEY;
+  } else {
+    return GRN_OBJ_TABLE_NO_KEY;
+  }
+}
+
 grn_obj *raku_grn_table_create(grn_ctx *ctx,
                                const char *name,
 			       const char *flag,
