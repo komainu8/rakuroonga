@@ -17,6 +17,10 @@ class Rakuroonga {
     $!groonga.open_database($path);
   }
 
+  method create_table(Str $table_name, Hash %options) {
+    $!groonga.table_create($table_name, %options);
+  }
+
   submethod DESTROY {
     $!groonga.fin();
   }
