@@ -2,6 +2,7 @@ use v6.c;
 use NativeCall;
 
 use Groonga::Database;
+use Groonga::Table;
 
 class Groonga {
   class grn_ctx is repr('CPointer') { * };
