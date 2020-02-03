@@ -17,7 +17,7 @@ class Rakuroonga {
     $!groonga.open_database($path);
   }
 
-  method create_table(Str $table_name, Hash %options) {
+  method create_table(Str $table_name, %options) {
     $!groonga.table_create($table_name, %options);
   }
 
