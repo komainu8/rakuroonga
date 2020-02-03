@@ -16,6 +16,7 @@ class Groonga {
 
   has $!context;
   has $!database;
+  has $!table;
 
   submethod BUILD {
     unless raku_grn_init() {
