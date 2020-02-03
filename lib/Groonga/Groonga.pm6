@@ -5,12 +5,14 @@ use Groonga::Database;
 use Groonga::Table;
 
 class Groonga {
-  class grn_ctx is repr('CPointer') { * };
-  sub raku_grn_init(--> Bool) is native(librakuroonga) { * };
-  sub raku_grn_fin() is native(librakuroonga) { * };
+  constant LIB_RAKUROONGA = "$*CWD/resources/rakuroonga";
 
-  sub raku_grn_ctx_open(int32 --> grn_ctx) is native(librakuroonga) { * };
-  sub raku_grn_ctx_close(grn_ctx) is native(librakuroonga) { * };
+  class grn_ctx is repr('CPointer') { * };
+  sub raku_grn_init(--> Bool) is native(LIB_RAKUROONGA) { * };
+  sub raku_grn_fin() is native(LIB_RAKUROONGA) { * };
+
+  sub raku_grn_ctx_open(int32 --> grn_ctx) is native(LIB_RAKUROONGA) { * };
+  sub raku_grn_ctx_close(grn_ctx) is native(LIB_RAKUROONGA) { * };
 
   has $!context;
   has $!database;

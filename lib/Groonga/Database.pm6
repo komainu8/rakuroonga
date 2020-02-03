@@ -1,13 +1,14 @@
 use v6.c;
 use NativeCall;
 
-constant librakuroonga = "./resources/rakuroonga";
 
 class Database {
+  constant LIB_RAKUROONGA = "$*CWD/resources/rakuroonga";
+
   class grn_ctx is repr('CPointer') { * };
   class grn_obj is repr('CPointer') { * };
-  sub raku_grn_db_create(grn_ctx, Str --> grn_obj) is native(librakuroonga) { * };
-  sub raku_grn_db_open(grn_ctx, Str, grn_obj --> Bool) is native(librakuroonga) { * };
+  sub raku_grn_db_create(grn_ctx, Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
+  sub raku_grn_db_open(grn_ctx, Str, grn_obj --> Bool) is native(LIB_RAKUROONGA) { * };
 
   has $!database;
   has $!path;
