@@ -18,8 +18,10 @@ class Table {
   method create($context, $table_name, %options) {
     $!table = raku_grn_table_create($context,
                                     $table_name,
+				    %options<flag>,
 				    %options<key_type>,
-				    %options<value_type>,
-				    Nil, Nil, Nil);
+				    %options<default_tokeninzer>,
+				    %options<normalizer>,
+				    %options<token_filter>);
   }
 }
