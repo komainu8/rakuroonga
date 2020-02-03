@@ -8,7 +8,9 @@ my $rakuroonga = Rakuroonga.new;
 is($rakuroonga.open_database("./t/db/db"),
    True,
    "This test for open database");
-my $table = $rakuroonga.create_table("Blogs", "Hash", "UInt64");
+
+my %options = 'flag' => 'Pat', 'key_type' => 'UInt64';
+my $table = $rakuroonga.create_table("Blogs", %options);
 $table.add_column("date", "Time");
 $table.add_column("title", "ShortText");
 
