@@ -42,12 +42,7 @@ class Groonga {
 
   method table_create(Str $table_name, Hash %options) {
     $!table = Table.new();
-    $!table.create($table_name,
-                   $key_type,
-		   $value_type,
-		   $default_tokenizer,
-		   $normalizer,
-		   $token_filter);
+    $!table.create($!context, $table_name, %options);
   }
 
   method fin {
