@@ -11,13 +11,15 @@ class Database {
   sub raku_grn_db_create(grn_ctx, Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
   sub raku_grn_db_open(grn_ctx, Str, grn_obj --> Bool) is native(LIB_RAKUROONGA) { * };
 
+  has $.context;
   has $!database;
   has $!path;
   has %!tables;
 
-  method create($context, $path=Nil --> Bool) {
+  method create($path=Nil --> Bool) {
+    say $!context;
     $!path = $path;
-    $!database = raku_grn_db_create($context, $!path);
+    $!database = raku_grn_db_create($!context, $!path);
 
     if $!database {
       return True;
@@ -26,15 +28,20 @@ class Database {
     }
   }
 
-  method open($context, $path=Nil --> Bool) {
+  method open($path=Nil --> Bool) {
     unless $path {
       return False;
     }
 
-    if raku_grn_db_open($context, $path, $!database) {
+    if raku_grn_db_open($!context, $path, $!database) {
       return True;
     } else {
       return False;
     }
+  }
+
+  method create_table($table_name, %options) {
+    %!tables = $table_name => Table.new(table_name => $table_name,
+                                        context => $!context);
   }
 }
