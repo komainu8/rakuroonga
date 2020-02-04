@@ -13,7 +13,6 @@ class Table {
 			    Str,
 			    Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
 
-  has $!table;
 
   method create($context, $table_name, %options) {
     $!table = raku_grn_table_create($context,
