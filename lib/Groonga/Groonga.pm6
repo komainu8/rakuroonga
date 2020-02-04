@@ -2,7 +2,6 @@ use v6.c;
 use NativeCall;
 
 use Groonga::Database;
-use Groonga::Table;
 
 class Groonga {
   constant LIB_RAKUROONGA = "$*CWD/resources/rakuroonga";
