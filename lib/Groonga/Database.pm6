@@ -1,6 +1,7 @@
 use v6.c;
 use NativeCall;
 
+use Groonga::Table;
 
 class Database {
   constant LIB_RAKUROONGA = "$*CWD/resources/rakuroonga";
@@ -12,6 +13,7 @@ class Database {
 
   has $!database;
   has $!path;
+  has %!tables;
 
   method create($context, $path=Nil --> Bool) {
     $!path = $path;
