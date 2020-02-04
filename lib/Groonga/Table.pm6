@@ -31,13 +31,14 @@ class Table {
     }
   }
 
-  method create($context, $table_name, %options) {
-    $!table = raku_grn_table_create($context,
-                                    $table_name,
-				    %options<flag>,
-				    %options<key_type>,
-				    %options<default_tokeninzer>,
-				    %options<normalizer>,
-				    %options<token_filter>);
+  method BUILD {
+    self!parse_options(%!options);
+    raku_grn_table_create($!context,
+                          $!table_name,
+		          %!options<flag>,
+		          %!options<key_type>,
+		          %!options<default_tokenizer>,
+		          %!options<normalizer>,
+		          %!options<token_filter>);
   }
 }
