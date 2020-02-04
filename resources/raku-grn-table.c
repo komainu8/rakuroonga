@@ -43,9 +43,13 @@ grn_obj *raku_grn_table_create(grn_ctx *ctx,
   unsigned int name_size = strlen(name);
   grn_obj_flags flags = GRN_OBJ_PERSISTENT;
   flags |= convert_flag(flag);
-  grn_obj key_type = convert_key_type(key_type);
 
-  return grn_table_create(name, name_size, NULL, flags, key_type, GRN_ENC_DEFAULT);
+  return grn_table_create(ctx,
+			  name, name_size,
+			  NULL,
+			  flags,
+			  convert_key_type(ctx, key_type),
+			  GRN_ENC_DEFAULT);
 }
 
 grn_id raku_grn_table_add(grn_ctx *ctx,
