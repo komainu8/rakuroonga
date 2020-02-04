@@ -13,6 +13,23 @@ class Table {
 			    Str,
 			    Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
 
+  method !parse_options(%options) {
+    unless %options<flag>:exists {
+      %options<flag> = "";
+    }
+    unless %options<key_type>:exists {
+      %options<key_type> = "";
+    }
+    unless %options<default_tokenizer>:exists {
+      %options<default_tokenizer> = "";
+    }
+    unless %options<normalizer>:exists {
+      %options<normalizer> = "";
+    }
+    unless %options<token_filter>:exists {
+      %options<token_filter> = "";
+    }
+  }
 
   method create($context, $table_name, %options) {
     $!table = raku_grn_table_create($context,
