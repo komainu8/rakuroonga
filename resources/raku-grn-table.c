@@ -29,8 +29,8 @@ static grn_obj_flags convert_flag(const char *flag) {
   }
 }
 
-static grn_obj convert_key_type(grn_ctx *ctx, const char *key_type) {
-  return grn_ctx_lookup(ctx, key_type, strlen(key_type));
+static grn_obj *convert_key_type(grn_ctx *ctx, const char *key_type) {
+  return grn_ctx_get(ctx, key_type, strlen(key_type));
 }
 
 grn_obj *raku_grn_table_create(grn_ctx *ctx,
