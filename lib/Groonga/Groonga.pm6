@@ -25,18 +25,18 @@ class Groonga {
   }
 
   multi method create_database(Str $path) {
-    $!database = Database.new();
-    $!database.create($!context, $path);
+    $!database = Database.new(context => $!context);
+    $!database.create($path);
   }
 
   multi method create_database {
-    $!database = Database.new();
-    $!database.create($!context);
+    $!database = Database.new(context => $!context);
+    $!database.create();
   }
 
   method open_database(Str $path) {
-    $!database = Database.new();
-    $!database.open($!context, $path);
+    $!database = Database.new(context => $!context);
+    $!database.open($path);
   }
 
   method table_create(Str $table_name, %options) {
