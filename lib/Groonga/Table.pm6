@@ -12,6 +12,9 @@ class Table {
 			    Str,
 			    Str,
 			    Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
+  has $!context;
+  has $!table_name;
+  has %!options;
 
   method !parse_options(%options) {
     unless %options<flag>:exists {
