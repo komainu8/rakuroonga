@@ -18,7 +18,7 @@ class Rakuroonga {
   }
 
   method create_table(Str $table_name, %options) {
-    $!groonga.table_create($table_name, %options);
+    $!groonga.create_table($table_name, %options);
   }
 
   submethod DESTROY {
