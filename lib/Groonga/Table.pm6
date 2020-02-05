@@ -34,7 +34,7 @@ class Table {
     }
   }
 
-  method BUILD {
+  submethod BUILD {
     self!parse_options(%!options);
     raku_grn_table_create($!context,
                           $!table_name,
