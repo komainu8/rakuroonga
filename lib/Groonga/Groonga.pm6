@@ -39,7 +39,7 @@ class Groonga {
     $!database.open($path);
   }
 
-  method create_table(Str $table_name, Hash %options) {
+  method create_table(Str $table_name, %options) {
     $!database.create_table($table_name, %options);
   }
 
