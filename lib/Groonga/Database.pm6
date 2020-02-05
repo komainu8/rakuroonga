@@ -41,7 +41,8 @@ class Database {
   }
 
   method create_table($table_name, %options) {
-    %!tables = $table_name => Table.new(table_name => $table_name,
-                                        context => $!context);
+    %!tables = $table_name => Table.new($!context,
+                                        $table_name,
+                                        %options);
   }
 }
