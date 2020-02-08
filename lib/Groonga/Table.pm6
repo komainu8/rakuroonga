@@ -18,19 +18,19 @@ class Table {
 
   method !parse_options(%options) {
     unless %options<flag>:exists {
-      %options<flag> = "";
+      %options.push: (flag => '');
     }
     unless %options<key_type>:exists {
-      %options<key_type> = "";
+      %options.push: (key_type => '');
     }
     unless %options<default_tokenizer>:exists {
-      %options<default_tokenizer> = "";
+      %options.push: (default_tokenizer => '');
     }
     unless %options<normalizer>:exists {
-      %options<normalizer> = "";
+      %options.push: (normalizer => '');
     }
     unless %options<token_filter>:exists {
-      %options<token_filter> = "";
+      %options.push: (token_filter => '');
     }
   }
 
