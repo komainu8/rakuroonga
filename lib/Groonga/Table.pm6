@@ -1,10 +1,11 @@
 use v6.c;
 use NativeCall;
 
+use Groonga::Context;
+
 class Table {
   constant LIB_RAKUROONGA = "$*CWD/resources/rakuroonga";
 
-  class grn_ctx is repr('CPointer') { * };
   class grn_obj is repr('CPointer') { * };
   sub raku_grn_table_create(grn_ctx,
                             Str,

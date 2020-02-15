@@ -1,12 +1,12 @@
 use v6.c;
 use NativeCall;
 
+use Groonga::Context;
 use Groonga::Database;
 
 class Groonga {
   constant LIB_RAKUROONGA = "$*CWD/resources/rakuroonga";
 
-  class grn_ctx is repr('CPointer') { * };
   sub raku_grn_init(--> Bool) is native(LIB_RAKUROONGA) { * };
   sub raku_grn_fin() is native(LIB_RAKUROONGA) { * };
 
