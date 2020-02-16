@@ -17,7 +17,6 @@ class Database {
   has %!tables;
 
   method create($path=Nil --> Bool) {
-    say $!context;
     $!path = $path;
     $!database = raku_grn_db_create($!context, $!path);
 
