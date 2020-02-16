@@ -14,7 +14,7 @@ class Groonga {
   sub raku_grn_ctx_close(grn_ctx) is native(LIB_RAKUROONGA) { * };
 
   has $!context;
-  has $!database;
+  has $!database; #TODO: Use Hash. Because we need have multiple databases.
   has $!table;
 
   submethod BUILD {
