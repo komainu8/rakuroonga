@@ -38,17 +38,18 @@ class Table {
     %options
   }
 
+  method new($context, $table_name, %options) {
+    my %parsed_options = self!parse_options(%options);
+    my $table = raku_grn_table_create($context,
+                                      $table_name,
+                                      %parsed_options<flag>,
+                                      %parsed_options<key_type>,
+                                      %parsed_options<default_tokenizer>,
+                                      %parsed_options<normalizer>,
+                                      %parsed_options<token_filter>);
+    self.bless(:$context, :$table_name, :%options, :$table);
   }
 
-  submethod BUILD {
-    self!parse_options(%!options);
-    raku_grn_table_create($!context,
-                          $!table_name,
-		          %!options<flag>,
-		          %!options<key_type>,
-		          %!options<default_tokenizer>,
-		          %!options<normalizer>,
-		          %!options<token_filter>);
   method name {
     $!table_name;
   }
