@@ -14,7 +14,7 @@ class Table {
 			    Str,
 			    Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
   has $!context;
-  has $!table_name;
+  has $.table_name;
   has %!options;
 
   method !parse_options(%options) {
@@ -44,5 +44,7 @@ class Table {
 		          %!options<default_tokenizer>,
 		          %!options<normalizer>,
 		          %!options<token_filter>);
+  method name {
+    $!table_name;
   }
 }
