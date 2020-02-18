@@ -15,6 +15,7 @@ class Table {
 			    Str,
 			    Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
   has $!context;
+  has $!table;
   has $.table_name;
   has %!options;
 
