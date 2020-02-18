@@ -8,6 +8,7 @@ class Table {
 
   class grn_obj is repr('CPointer') { * };
   sub raku_grn_table_create(grn_ctx,
+			    Str,
                             Str,
 			    Str,
 			    Str,
