@@ -35,6 +35,9 @@ class Table {
     unless %options<token_filter>:exists {
       %options.push: (token_filter => '');
     }
+    %options
+  }
+
   }
 
   submethod BUILD {
