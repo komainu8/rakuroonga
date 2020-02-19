@@ -52,9 +52,19 @@ grn_obj *raku_grn_table_create(grn_ctx *ctx,
 			  GRN_ENC_DEFAULT);
 }
 
-grn_id raku_grn_table_add(grn_ctx *ctx,
-                          grn_obj *table,
-                          const void *key, unsigned int key_size,
-                          int *added) {
-  return grn_table_add(ctx, table, key, key_size, added);
+bool raku_grn_table_insert(grn_ctx *ctx,
+			   grn_obj *table, grn_obj *column,
+			   const char *insert_value) {
+  grn_obj value;
+
+  grn_id id = grn_table_add(ctx, table);
+
+  GRN_OBJ_INIT(&value, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY);
+  GRN_BULK_SET(ctx, &value, insert_value, strlen(insert_value));
+  grn_rc inserted = grn_obj_set_value(ctx, column, id, &value, GRN_OBJ_SET);
+
+  if (inserted == GRN_INVALID_ARGUMENT) {
+    return false;
+  }
+  return true;
 }
