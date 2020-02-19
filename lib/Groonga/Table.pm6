@@ -14,8 +14,13 @@ class Table {
 			    Str,
 			    Str,
 			    Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
-  has $!context;
-  has $!table;
+  sub raku_grn_column_create(grn_ctx,
+			     grn_obj,
+			     Str,
+			     Str) is native(LIB_RAKUROONGA) { * };
+
+  has $.context;
+  has $.table;
   has $.table_name;
   has %!options;
 
@@ -52,5 +57,12 @@ class Table {
 
   method name {
     $!table_name;
+  }
+
+  method add_column($column_name, $value_type) {
+    raku_grn_column_create($!context,
+			   $!table,
+			   $column_name,
+			   $value_type);
   }
 }
