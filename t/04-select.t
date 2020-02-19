@@ -14,8 +14,9 @@ my $table = $rakuroonga.create_table("Blogs", %options);
 $table.add_column("date", "Time");
 $table.add_column("title", "ShortText");
 
-$table.insert("2020/1/1", "Happy New Year!");
-$table.insert("2020/1/2", "I eat Osechi!!");
+my %data = '2020/1/1' => 'Happy New Year!',
+           '2020/1/2' => 'I eat Osechi!!';
+$table.insert(%data);
 
 is($table.select("Blogs", "data == 2020/1/1"),
    { data => "2020/1/1", title => "Happy New Year!" },
