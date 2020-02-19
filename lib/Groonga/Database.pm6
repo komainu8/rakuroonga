@@ -14,7 +14,6 @@ class Database {
   has $.context;
   has $!database;
   has $!path;
-  has %!tables;
 
   method create($path=Nil --> Bool) {
     $!path = $path;
@@ -40,7 +39,6 @@ class Database {
   }
 
   method create_table($table_name, %options) {
-    my $table = Table.new($!context, $table_name, %options);
-    %!tables.push: ($table.table_name => $table);
+    Table.new($!context, $table_name, %options);
   }
 }
