@@ -53,11 +53,12 @@ grn_obj *raku_grn_table_create(grn_ctx *ctx,
 }
 
 bool raku_grn_table_insert(grn_ctx *ctx,
-			   grn_obj *table, grn_obj *column,
+			   grn_obj *table, grn_obj *key,
+			   grn_obj *column,
 			   const char *insert_value) {
   grn_obj value;
 
-  grn_id id = grn_table_add(ctx, table);
+  grn_id id = grn_table_add(ctx, table, GRN_TEXT_VALUE(key), GRN_TEXT_LEN(key), NULL);
 
   GRN_OBJ_INIT(&value, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY);
   GRN_BULK_SET(ctx, &value, insert_value, strlen(insert_value));
