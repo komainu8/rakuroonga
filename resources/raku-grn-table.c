@@ -60,8 +60,8 @@ bool raku_grn_table_insert(grn_ctx *ctx,
 
   grn_id id = grn_table_add(ctx, table, GRN_TEXT_VALUE(key), GRN_TEXT_LEN(key), NULL);
 
-  GRN_BULK_SET(ctx, &value, insert_value, strlen(insert_value));
   GRN_OBJ_INIT(&value, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY, GRN_ID_NIL);
+  GRN_TEXT_SET(ctx, &value, insert_value, strlen(insert_value));
   grn_rc inserted = grn_obj_set_value(ctx, column, id, &value, GRN_OBJ_SET);
 
   if (inserted == GRN_INVALID_ARGUMENT) {
