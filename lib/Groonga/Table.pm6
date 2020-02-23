@@ -18,6 +18,9 @@ class Table {
 			     grn_obj,
 			     Str,
 			     Str) is native(LIB_RAKUROONGA) { * };
+  sub raku_grn_table_insert(grn_ctx,
+                            grn_obj,
+			    Str, Str, Str) is native(LIB_RAKUROONGA) { * };
 
   has $.context;
   has $.table;
