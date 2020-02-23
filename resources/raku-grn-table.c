@@ -54,15 +54,17 @@ grn_obj *raku_grn_table_create(grn_ctx *ctx,
 
 bool raku_grn_table_insert(grn_ctx *ctx,
 			   grn_obj *table, const char *key,
-			   grn_obj *column,
+			   const char *insert_column,
 			   const char *insert_value) {
-  grn_obj value;
+  grn_obj value, column;
 
   grn_id id = grn_table_add(ctx, table, key, strlen(key), NULL);
 
   GRN_OBJ_INIT(&value, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY, GRN_ID_NIL);
   GRN_TEXT_SET(ctx, &value, insert_value, strlen(insert_value));
-  grn_rc inserted = grn_obj_set_value(ctx, column, id, &value, GRN_OBJ_SET);
+  GRN_OBJ_INIT(&column, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY, GRN_ID_NIL);
+  GRN_TEXT_SET(ctx, &column, insert_column, strlen(insert_column));
+  grn_rc inserted = grn_obj_set_value(ctx, &column, id, &value, GRN_OBJ_SET);
 
   if (inserted == GRN_INVALID_ARGUMENT) {
     return false;
