@@ -68,4 +68,22 @@ class Table {
 			   $column_name,
 			   $value_type);
   }
+
+  method insert(%records) {
+    my $key = '';
+    my $column = '';
+    my $value = '';
+
+    for %records -> %record {
+      if %record<_key>:exists {
+        $key = %record<_key>;
+      } else {
+        $column = %record<>:k.Str;
+        $value = %record<>:v.Str;
+      }
+    }
+    raku_grn_table_insert($!context,
+                          $!table,
+			  $key, $column, $value);
+  }
 }
