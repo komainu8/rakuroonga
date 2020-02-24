@@ -56,15 +56,29 @@ bool raku_grn_table_insert(grn_ctx *ctx,
 			   grn_obj *table, const char *key,
 			   const char *insert_column,
 			   const char *insert_value) {
-  grn_obj value, column;
+  grn_obj value;
 
   grn_id id = grn_table_add(ctx, table, key, strlen(key), NULL);
 
   GRN_OBJ_INIT(&value, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY, GRN_ID_NIL);
   GRN_TEXT_SET(ctx, &value, insert_value, strlen(insert_value));
-  GRN_OBJ_INIT(&column, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY, GRN_ID_NIL);
-  GRN_TEXT_SET(ctx, &column, insert_column, strlen(insert_column));
-  grn_rc inserted = grn_obj_set_value(ctx, &column, id, &value, GRN_OBJ_SET);
+
+  grn_obj *column = grn_obj_column(ctx, table, insert_column, strlen(insert_column));
+  /* TODO: Error handling
+    if (!column) {
+      char table_name[GRN_TABLE_MAX_KEY_SIZE];
+      int table_name_size;
+      table_name_size = grn_obj_name(ctx,
+                                     loader->table,
+                                     table_name,
+                                     GRN_TABLE_MAX_KEY_SIZE);
+      GRN_LOG(ctx, GRN_LOG_ERROR, "[load] nonexistent column: <%.*s.%.*s>",
+              table_name_size,
+              table_name,
+              (int)name_size,
+              name);
+  */
+  grn_rc inserted = grn_obj_set_value(ctx, column, id, &value, GRN_OBJ_SET);
 
   if (inserted == GRN_INVALID_ARGUMENT) {
     return false;
