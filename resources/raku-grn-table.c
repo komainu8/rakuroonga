@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2019 Horimoto Yasuhiro
+    Copyright (C) 2019-2020 Horimoto Yasuhiro
 
     This file is part of Rakuroonga.
 
