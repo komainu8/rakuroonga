@@ -22,6 +22,10 @@ class Table {
                             grn_obj,
 			    Str, Str, Str) is native(LIB_RAKUROONGA) { * };
 
+  sub raku_grn_table_select(grn_ctx,
+			    grn_obj,
+			    Str) is native(LIB_RAKUROONGA) { * };
+  
   has $.context;
   has $.table;
   has $.table_name;
@@ -85,5 +89,10 @@ class Table {
     raku_grn_table_insert($!context,
                           $!table,
 			  $key, $column, $value);
+  }
+
+  method select($table_name, $filter) {
+    my $match_records = raku_grn_table_select($!context, $!table, $filter);
+    say $match_records;
   }
 }
