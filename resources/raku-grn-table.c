@@ -89,7 +89,7 @@ bool raku_grn_table_insert(grn_ctx *ctx,
 }
 
 void raku_grn_table_select(grn_ctx *ctx,
-			   grn_obj *table, const char *filter) {
+                           grn_obj *table, const char *filter) {
   grn_obj *value, *condition;
   grn_obj *match_records = NULL;
   grn_obj *table_created = NULL;
