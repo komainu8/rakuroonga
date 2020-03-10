@@ -9,19 +9,17 @@ is($rakuroonga.open_database("./t/db/db"),
    True,
    "This test for open database");
 
-my %options = 'flag' => 'Pat', 'key_type' => 'ShortText';
-my $table = $rakuroonga.create_table("Blogs", %options);
+my $table = $rakuroonga.create_table("Blogs");
 $table.add_column("title", "ShortText");
+$table.add_column("content", "ShortText");
 
-my %data = '_key' => '20200101', 'title' => 'Happy New Year!';
+my %data = 'title' => 'Happy New Year!', 'content' => 'Hello World!';
 $table.insert(%data);
-%data = '_key' => '20200102', 'title' => 'This is a pen!!';
+%data = 'title' => 'This is a pen!!', 'content' => 'Hello Rakuroonga';
 $table.insert(%data);
 
-$table.select("Blogs", "\'_key == \"20200101\"\'");
-
-#is($table.select("Blogs", "data == 2020/1/1"),
-#   { data => "2020/1/1", title => "Happy New Year!" },
-#   "This test for select");
+is($table.select("Blogs", "\'title == \"This is a pen!!\"\'"),
+   { 'title' => 'This is a pen!!', 'content' => 'Hello Rakuroonga'},
+   "This test for select";
 
 done-testing;
