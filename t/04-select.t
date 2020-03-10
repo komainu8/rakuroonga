@@ -20,6 +20,6 @@ $table.insert(%data);
 
 is($table.select("Blogs", "\'title == \"This is a pen!!\"\'"),
    { 'title' => 'This is a pen!!', 'content' => 'Hello Rakuroonga'},
-   "This test for select";
+   "This test for select");
 
 done-testing;
