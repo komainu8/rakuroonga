@@ -9,7 +9,7 @@ is($rakuroonga.open_database("./t/db/db"),
    True,
    "This test for open database");
 
-my $table = $rakuroonga.create_table("Blogs");
+my $table = $rakuroonga.create_table("Blogs", {});
 $table.add_column("title", "ShortText");
 $table.add_column("content", "ShortText");
 
