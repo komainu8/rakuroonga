@@ -38,21 +38,21 @@ static grn_obj *convert_key_type(grn_ctx *ctx, const char *key_type) {
 
 grn_obj *raku_grn_table_create(grn_ctx *ctx,
                                const char *name,
-			       const char *flag,
-			       const char *key_type,
-			       const char *default_tokenizer,
-			       const char *normalizer,
-			       const char *token_filter) {
+                               const char *flag,
+                               const char *key_type,
+                               const char *default_tokenizer,
+                               const char *normalizer,
+                               const char *token_filter) {
   unsigned int name_size = strlen(name);
   grn_obj_flags flags = GRN_OBJ_PERSISTENT;
   flags |= convert_flag(flag);
 
   return grn_table_create(ctx,
-			  name, name_size,
-			  NULL,
-			  flags,
-			  convert_key_type(ctx, key_type),
-			  GRN_ENC_DEFAULT);
+                          name, name_size,
+                          NULL,
+                          flags,
+                          convert_key_type(ctx, key_type),
+                          GRN_ENC_DEFAULT);
 }
 
 bool raku_grn_table_insert(grn_ctx *ctx,
