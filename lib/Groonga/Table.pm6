@@ -50,16 +50,15 @@ class Table {
     %options
   }
 
-  method new($context, $table_name, %options) {
-    my %parsed_options = self!parse_options(%options);
-    my $table = raku_grn_table_create($context,
-                                      $table_name,
+  submethod BUILD(:$!context, :$!table_name, :%!options) {
+      my %parsed_options = self!parse_options(%!options);
+      $!table = raku_grn_table_create($!context,
+                                      $!table_name,
                                       %parsed_options<flag>,
                                       %parsed_options<key_type>,
                                       %parsed_options<default_tokenizer>,
                                       %parsed_options<normalizer>,
                                       %parsed_options<token_filter>);
-    self.bless(:$context, :$table_name, :%options, :$table);
   }
 
   method name {

@@ -39,6 +39,8 @@ class Database {
   }
 
   method create_table($table_name, %options) {
-    Table.new($!context, $table_name, %options);
+      Table.new(context => $!context,
+                table_name => $table_name,
+                options => %options);
   }
 }
