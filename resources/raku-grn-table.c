@@ -20,12 +20,9 @@
 #include "raku-grn.h"
 
 static grn_obj_flags convert_flag(const char *flag) {
-  if(flag == NULL)
-    return GRN_OBJ_TABLE_NO_KEY;
-
-  if(strncmp("Hash", flag, strlen("Hash"))) {
+  if(strncmp("Hash", flag, strlen("Hash")) == 0) {
     return GRN_OBJ_TABLE_HASH_KEY;
-  } else if(strncmp("Pat", flag, strlen("Pat"))) {
+  } else if(strncmp("Pat", flag, strlen("Pat")) == 0) {
     return GRN_OBJ_TABLE_PAT_KEY;
   } else {
     return GRN_OBJ_TABLE_NO_KEY;
