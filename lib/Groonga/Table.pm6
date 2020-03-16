@@ -84,10 +84,10 @@ class Table {
         $column = %record<>:k.Str;
         $value = %record<>:v.Str;
       }
+      raku_grn_table_insert($!context,
+                            $!table,
+                            $key, $column, $value);
     }
-    raku_grn_table_insert($!context,
-                          $!table,
-			  $key, $column, $value);
   }
 
   method select($table_name, $filter) {
