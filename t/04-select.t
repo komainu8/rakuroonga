@@ -5,9 +5,7 @@ use Rakuroonga;
 
 my $rakuroonga = Rakuroonga.new;
 
-is($rakuroonga.open_database("./t/db/db"),
-   True,
-   "This test for open database");
+$rakuroonga.open_database("./t/db/db");
 
 my $table = $rakuroonga.create_table("Blogs", {});
 $table.add_column("title", "ShortText");
