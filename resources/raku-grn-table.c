@@ -45,14 +45,26 @@ grn_obj *raku_grn_table_create(grn_ctx *ctx,
                                const char *token_filter) {
   unsigned int name_size = strlen(name);
   grn_obj_flags flags = GRN_OBJ_PERSISTENT;
+  grn_obj *table;
+
   flags |= convert_flag(flag);
 
-  return grn_table_create(ctx,
-                          name, name_size,
-                          NULL,
-                          flags,
-                          convert_key_type(ctx, key_type),
-                          GRN_ENC_DEFAULT);
+  if (convert_flag(flag) == GRN_OBJ_TABLE_NO_KEY) {
+    table = grn_table_create(ctx,
+                             name, name_size,
+                             NULL,
+                             flags,
+                             NULL, NULL);
+  } else {
+    table = grn_table_create(ctx,
+                             name, name_size,
+                             NULL,
+                             flags,
+                             convert_key_type(ctx, key_type),
+                             GRN_ENC_DEFAULT);
+  }
+
+  return table;
 }
 
 bool raku_grn_table_insert(grn_ctx *ctx,
