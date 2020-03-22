@@ -95,6 +95,7 @@ bool raku_grn_table_insert(grn_ctx *ctx,
   grn_rc inserted = grn_obj_set_value(ctx, column, id, &value, GRN_OBJ_SET);
 
   if (inserted == GRN_INVALID_ARGUMENT) {
+    grn_obj_unlink(ctx, column);
     return false;
   }
   return true;
