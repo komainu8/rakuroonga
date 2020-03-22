@@ -9,15 +9,14 @@ $rakuroonga.open_database("./t/db/db");
 
 my $table = $rakuroonga.create_table("Blogs", {});
 $table.add_column("title", "ShortText");
-$table.add_column("content", "ShortText");
 
-my %data = 'title' => 'Happy New Year!', 'content' => 'Hello World!';
+my %data = 'title' => 'Happy!';
 $table.insert(%data);
-%data = 'title' => 'This is a pen!!', 'content' => 'Hello Rakuroonga';
+%data = 'title' => 'Hello!';
 $table.insert(%data);
 
-is($table.select("Blogs", "\'title == \"This is a pen!!\"\'"),
-   { 'title' => 'This is a pen!!', 'content' => 'Hello Rakuroonga'},
+is($table.select("Blogs", "\'title == \"Happy!\"\'"),
+   { 'title' => 'Happy!' },
    "This test for select");
 
 done-testing;
