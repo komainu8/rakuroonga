@@ -74,7 +74,7 @@ bool raku_grn_table_insert(grn_ctx *ctx,
   grn_id id = grn_table_add(ctx, table, key, strlen(key), &added);
   /* TODO: Error handling using added */
 
-  GRN_OBJ_INIT(&value, GRN_BULK, GRN_OBJ_DO_SHALLOW_COPY, GRN_ID_NIL);
+  GRN_TEXT_INIT(&value, 0);
   GRN_TEXT_SET(ctx, &value, insert_value, strlen(insert_value));
 
   grn_obj *column = grn_obj_column(ctx, table, insert_column, strlen(insert_column));
