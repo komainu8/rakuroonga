@@ -51,7 +51,7 @@ grn_obj *raku_grn_table_create(grn_ctx *ctx,
                              name, name_size,
                              NULL,
                              flags,
-                             NULL, NULL);
+                             NULL, grn_ctx_at(ctx, GRN_DB_UINT32));
   } else {
     table = grn_table_create(ctx,
                              name, name_size,
