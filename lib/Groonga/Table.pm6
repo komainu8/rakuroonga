@@ -27,10 +27,10 @@ class Table {
   is native(LIB_RAKUROONGA) { * };
 
 
-  sub raku_grn_table_select(grn_ctx,
-			    grn_obj,
-			    Str) is native(LIB_RAKUROONGA) { * };
-  
+  sub raku_grn_table_select(grn_ctx $context,
+                            grn_obj $table,
+                            Str $filter) is native(LIB_RAKUROONGA) { * };
+
   has $.context;
   has $.table;
   has $.table_name;
