@@ -7,20 +7,25 @@ class Table {
   constant LIB_RAKUROONGA = "$*CWD/resources/rakuroonga";
 
   class grn_obj is repr('CPointer') { * };
-  sub raku_grn_table_create(grn_ctx,
-			    Str,
-                            Str,
-			    Str,
-			    Str,
-			    Str,
-			    Str --> grn_obj) is native(LIB_RAKUROONGA) { * };
-  sub raku_grn_column_create(grn_ctx,
-			     grn_obj,
-			     Str,
-			     Str) is native(LIB_RAKUROONGA) { * };
-  sub raku_grn_table_insert(grn_ctx,
-                            grn_obj,
-			    Str, Str, Str) is native(LIB_RAKUROONGA) { * };
+  sub raku_grn_table_create(grn_ctx $context,
+                            Str $table_name,
+                            Str $flag,
+                            Str $key_type,
+                            Str $default_tokenizer,
+                            Str $normalizer,
+                            Str $token_filter --> grn_obj)
+  is native(LIB_RAKUROONGA) { * };
+
+  sub raku_grn_column_create(grn_ctx $context,
+                             grn_obj $table,
+                             Str $column_name,
+                             Str $value_type) is native(LIB_RAKUROONGA) { * };
+
+  sub raku_grn_table_insert(grn_ctx $context,
+                            grn_obj $table,
+                            Str $key, Str $column, Str $value)
+  is native(LIB_RAKUROONGA) { * };
+
 
   sub raku_grn_table_select(grn_ctx,
 			    grn_obj,
