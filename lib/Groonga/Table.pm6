@@ -72,9 +72,9 @@ class Table {
 
   method add_column($column_name, $value_type) {
     raku_grn_column_create($!context,
-			   $!table,
-			   $column_name,
-			   $value_type);
+                           $!table,
+                           $column_name,
+                           $value_type);
   }
 
   method insert(%records) {
