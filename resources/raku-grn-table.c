@@ -71,7 +71,7 @@ bool raku_grn_table_insert(grn_ctx *ctx,
   grn_obj value;
   int added;
 
-  grn_id id = grn_table_add(ctx, table, key, strlen(key), &added);
+  grn_id id = grn_table_add(ctx, table, NULL, 0, &added);
   /* TODO: Error handling using added */
 
   GRN_TEXT_INIT(&value, 0);
@@ -98,6 +98,7 @@ bool raku_grn_table_insert(grn_ctx *ctx,
     grn_obj_unlink(ctx, column);
     return false;
   }
+
   return true;
 }
 
