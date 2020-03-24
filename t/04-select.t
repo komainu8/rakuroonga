@@ -15,7 +15,7 @@ $table.insert(%data);
 %data = 'title' => 'Hello!';
 $table.insert(%data);
 
-is($table.select("Blogs", "\'title == \"Happy!\"\'"),
+is($table.select("Blogs", "_id == 1"),
    { 'title' => 'Happy!' },
    "This test for select");
 
