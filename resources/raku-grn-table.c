@@ -107,17 +107,13 @@ void raku_grn_table_select(grn_ctx *ctx,
   grn_obj *value, *condition;
   grn_obj *match_records = NULL;
   grn_obj *table_created = NULL;
-  
-  GRN_EXPR_CREATE_FOR_QUERY(ctx, table, condition, value);
-  grn_expr_parse(ctx, condition,
-		 filter, strlen(filter),
-		 NULL,
-		 GRN_OP_MATCH, GRN_OP_AND, GRN_EXPR_SYNTAX_SCRIPT);
+  grn_obj *result = NULL;
 
-  table_created = grn_table_create(ctx, NULL, 0, NULL,
-				   GRN_TABLE_HASH_KEY|GRN_OBJ_WITH_SUBREC,
-				   table, NULL);
-  if (table_created) {
-    grn_table_select(ctx, table, condition, match_records, GRN_OP_OR);
-  }
+  GRN_EXPR_CREATE_FOR_QUERY(ctx, table, condition, value);
+  grn_rc rc = grn_expr_parse(ctx, condition,
+                             filter, strlen(filter),
+                             NULL,
+                             GRN_OP_MATCH, GRN_OP_AND, GRN_EXPR_SYNTAX_SCRIPT);
+
+  result = grn_table_select(ctx, table, condition, NULL, GRN_OP_OR);
 }
