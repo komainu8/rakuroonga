@@ -114,5 +114,63 @@ void raku_grn_table_select(grn_ctx *ctx,
                              NULL,
                              GRN_OP_MATCH, GRN_OP_AND, GRN_EXPR_SYNTAX_SCRIPT);
 
-  result = grn_table_select(ctx, table, condition, NULL, GRN_OP_OR);
+  result_table = grn_table_select(ctx, table, condition, NULL, GRN_OP_OR);
+  if (result_table == NULL) {
+    return;
+  }
+
+  grn_obj columns;
+  GRN_PTR_INIT(&columns, GRN_OBJ_VECTOR, GRN_ID_NIL);
+  const char *column_names = "*";
+  grn_obj_columns(ctx, result_table, column_names, strlen(column_names), &columns);
+  const size_t n_columns = GRN_PTR_VECTOR_SIZE(&columns);
+
+  grn_obj buffer;
+  GRN_VOID_INIT(&buffer);
+
+  GRN_TABLE_EACH_BEGIN(ctx, result_table, cursor, result_id) {
+    size_t i;
+    for (i = 0; i < n_columns; i++) {
+      grn_obj *column = GRN_PTR_VALUE_AT(&columns, i);
+      GRN_BULK_REWIND(&buffer);
+      grn_obj_get_value(ctx, column, result_id, &buffer);
+      printf("AAA=%d", buffer.header.domain);
+      /*
+        typedef enum {
+          GRN_DB_VOID = 0,
+          GRN_DB_DB,
+          GRN_DB_OBJECT,
+          GRN_DB_BOOL,
+          GRN_DB_INT8,
+          GRN_DB_UINT8,
+          GRN_DB_INT16,
+          GRN_DB_UINT16,
+          GRN_DB_INT32,
+          GRN_DB_UINT32,
+          GRN_DB_INT64,
+          GRN_DB_UINT64,
+          GRN_DB_FLOAT,
+          GRN_DB_TIME,
+          GRN_DB_SHORT_TEXT,
+          GRN_DB_TEXT,
+          GRN_DB_LONG_TEXT,
+          GRN_DB_TOKYO_GEO_POINT,
+          GRN_DB_WGS84_GEO_POINT,
+          GRN_DB_FLOAT32
+        } grn_builtin_type;
+      */
+      grn_p(ctx, &buffer);
+      printf("AAA\n");
+    }
+  } GRN_TABLE_EACH_END(ctx, cursor);
+  GRN_OBJ_FIN(ctx, &buffer);
+
+  {
+    size_t i;
+    for (i = 0; i < n_columns; i++) {
+      grn_obj *column = GRN_PTR_VALUE_AT(&columns, i);
+      grn_obj_unlink(ctx, column);
+    }
+  }
+  GRN_OBJ_FIN(ctx, &columns);
 }
