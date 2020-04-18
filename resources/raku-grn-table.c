@@ -18,6 +18,7 @@
 */
 
 #include "raku-grn.h"
+#include <stdio.h>
 
 static grn_obj_flags convert_flag(const char *flag) {
   if(strncmp("Hash", flag, strlen("Hash")) == 0) {
