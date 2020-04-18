@@ -105,9 +105,7 @@ bool raku_grn_table_insert(grn_ctx *ctx,
 void raku_grn_table_select(grn_ctx *ctx,
                            grn_obj *table, const char *filter) {
   grn_obj *value, *condition;
-  grn_obj *match_records = NULL;
-  grn_obj *table_created = NULL;
-  grn_obj *result = NULL;
+  grn_obj *result_table = NULL;
 
   GRN_EXPR_CREATE_FOR_QUERY(ctx, table, condition, value);
   grn_rc rc = grn_expr_parse(ctx, condition,
