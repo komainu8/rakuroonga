@@ -100,8 +100,9 @@ class Table {
   }
 
   method select($table_name, $filter) {
-    my $match_records = raku_grn_table_select($!context, $!table, $filter);
-    say $match_records;
+      my $result_table = raku_grn_table_select($!context, $!table, $filter);
+      say $result_table;
       my $n_columns = raku_grn_get_n_columns($!context, $result_table);
+      say "match";
   }
 }

@@ -105,8 +105,8 @@ bool raku_grn_table_insert(grn_ctx *ctx,
   return true;
 }
 
-void raku_grn_table_select(grn_ctx *ctx,
-                           grn_obj *table, const char *filter) {
+grn_obj *raku_grn_table_select(grn_ctx *ctx,
+                               grn_obj *table, const char *filter) {
   grn_obj *value, *condition;
   grn_obj *result_table = NULL;
 
@@ -117,10 +117,9 @@ void raku_grn_table_select(grn_ctx *ctx,
                              GRN_OP_MATCH, GRN_OP_AND, GRN_EXPR_SYNTAX_SCRIPT);
 
   result_table = grn_table_select(ctx, table, condition, NULL, GRN_OP_OR);
-  if (result_table == NULL) {
-    return;
-  }
+  return result_table;
 
+  /*
   grn_obj columns;
   GRN_PTR_INIT(&columns, GRN_OBJ_VECTOR, GRN_ID_NIL);
   const char *column_names = "*";
@@ -137,7 +136,7 @@ void raku_grn_table_select(grn_ctx *ctx,
       GRN_BULK_REWIND(&buffer);
       grn_obj_get_value(ctx, column, result_id, &buffer);
       printf("AAA=%d", buffer.header.domain);
-      /*
+      
         typedef enum {
           GRN_DB_VOID = 0,
           GRN_DB_DB,
@@ -160,7 +159,7 @@ void raku_grn_table_select(grn_ctx *ctx,
           GRN_DB_WGS84_GEO_POINT,
           GRN_DB_FLOAT32
         } grn_builtin_type;
-      */
+      
       grn_p(ctx, &buffer);
       printf("AAA\n");
     }
@@ -175,4 +174,5 @@ void raku_grn_table_select(grn_ctx *ctx,
     }
   }
   GRN_OBJ_FIN(ctx, &columns);
+  */
 }
