@@ -36,7 +36,7 @@ class Table {
   is native(LIB_RAKUROONGA) { * };
 
   sub raku_grn_get_n_columns(grn_ctx $context,
-                             grn_obj $result_table --> size_t)
+                             grn_obj $columns --> size_t)
   is native(LIB_RAKUROONGA) { * };
 
   has $.context;
@@ -106,7 +106,7 @@ class Table {
   method select($table_name, $filter) {
       my $result_table = raku_grn_table_select($!context, $!table, $filter);
       say $result_table;
-      my $n_columns = raku_grn_get_n_columns($!context, $result_table);
+#      my $n_columns = raku_grn_get_n_columns($!context, $result_table);
       say "match";
   }
 }
