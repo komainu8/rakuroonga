@@ -104,6 +104,7 @@ bool raku_grn_table_insert(grn_ctx *ctx,
 
   return true;
 }
+
 size_t raku_grn_get_n_columns(grn_ctx *ctx, grn_obj *result_table) {
   grn_obj columns;
   GRN_PTR_INIT(&columns, GRN_OBJ_VECTOR, GRN_ID_NIL);
