@@ -31,6 +31,10 @@ class Table {
                             grn_obj $table,
                             Str $filter --> grn_obj) is native(LIB_RAKUROONGA) { * };
 
+  sub raku_grn_get_columns(grn_ctx $context,
+                           grn_obj $result_table --> grn_obj)
+  is native(LIB_RAKUROONGA) { * };
+
   sub raku_grn_get_n_columns(grn_ctx $context,
                              grn_obj $result_table --> size_t)
   is native(LIB_RAKUROONGA) { * };

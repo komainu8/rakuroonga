@@ -108,18 +108,16 @@ bool raku_grn_table_insert(grn_ctx *ctx,
 size_t raku_grn_get_n_columns(grn_ctx *ctx, grn_obj *result_table) {
   grn_obj columns;
   GRN_PTR_INIT(&columns, GRN_OBJ_VECTOR, GRN_ID_NIL);
+grn_obj *raku_grn_get_columns(grn_ctx *ctx, grn_obj *result_table) {
+  grn_obj *columns;
+  GRN_PTR_INIT(columns, GRN_OBJ_VECTOR, GRN_ID_NIL);
   const char *column_names = "*";
-  grn_obj_columns(ctx, result_table, column_names, strlen(column_names), &columns);
-  size_t n_columns = GRN_PTR_VECTOR_SIZE(&columns);
+  grn_obj_columns(ctx, result_table, column_names, strlen(column_names), columns);
 
-  {
-    size_t i;
-    for (i = 0; i < n_columns; i++) {
-      grn_obj *column = GRN_PTR_VALUE_AT(&columns, i);
-      grn_obj_unlink(ctx, column);
-    }
-  }
-  GRN_OBJ_FIN(ctx, &columns);
+  return columns;
+}
+
+size_t raku_grn_get_n_columns(grn_ctx *ctx, grn_obj *columns) {
 
   return n_columns;
 }
