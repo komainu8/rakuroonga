@@ -118,8 +118,37 @@ size_t raku_grn_get_n_columns(grn_ctx *ctx, grn_obj *columns) {
   return GRN_PTR_VECTOR_SIZE(columns);
 }
 
+uint32_t raku_grn_get_value_type(grn_ctx ctx, grn_obj *column) {
+  grn_obj buffer;
+  GRN_VOID_INIT(&buffer);
+  GRN_BULK_REWIND(&buffer);
+  grn_obj_get_value(ctx, column, result_id, &buffer);
 
-  return n_columns;
+  return buffer.header.domain;
+  /*
+        typedef enum {
+          GRN_DB_VOID = 0,
+          GRN_DB_DB,
+          GRN_DB_OBJECT,
+          GRN_DB_BOOL,
+          GRN_DB_INT8,
+          GRN_DB_UINT8,
+          GRN_DB_INT16,
+          GRN_DB_UINT16,
+          GRN_DB_INT32,
+          GRN_DB_UINT32,
+          GRN_DB_INT64,
+          GRN_DB_UINT64,
+          GRN_DB_FLOAT,
+          GRN_DB_TIME,
+          GRN_DB_SHORT_TEXT,
+          GRN_DB_TEXT,
+          GRN_DB_LONG_TEXT,
+          GRN_DB_TOKYO_GEO_POINT,
+          GRN_DB_WGS84_GEO_POINT,
+          GRN_DB_FLOAT32
+        } grn_builtin_type;
+  */
 }
 
 grn_obj *raku_grn_table_select(grn_ctx *ctx,
